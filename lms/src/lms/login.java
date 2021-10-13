@@ -5,6 +5,8 @@
  */
 package lms;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mohamed
@@ -14,6 +16,10 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+    String id="";
+    String user="";
+    
     public login() {
         initComponents();
     }
@@ -186,6 +192,41 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String mis="لقد نسيت ادخال البينات التاليه"+"\n";
+        if(jTextField1.getText().equals("")){
+        mis+=jLabel1.getText();
+        
+        }
+        
+        if(pass.getText().equals("")){
+        
+        mis+=jLabel2.getText()+"\n";
+        }
+        if(jComboBox1.getSelectedIndex()==-1){
+        mis+=jComboBox1.getToolTipText()+"\n";
+        }
+        if(!jTextField1.getText().equals("")&&!pass.getText().equals("")&&jComboBox1.getSelectedIndex()!=-1){
+//            JOptionPane.showMessageDialog(null, "welcome");
+        }
+        else{
+        JOptionPane.showMessageDialog(rootPane, mis,"خطاء البينات",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        
+        
+        if(jComboBox1.getSelectedIndex()==0){
+        adminLogin();
+        }else if(jComboBox1.getSelectedIndex()==1){
+        userLogin();
+        
+        }else if(jComboBox1.getSelectedIndex()==2){
+        
+        guestLogin();
+        }
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -266,4 +307,36 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField pass;
     // End of variables declaration//GEN-END:variables
+
+    private void adminLogin() {
+        
+       user=jTextField1.getText();
+       String password=pass.getText().trim();
+       
+       if(user.equals("admin")&&password.equals("1234")){
+       mainMenu m=new mainMenu();
+       m.jMenu2.setEnabled(false);
+       m.jMenu4.setEnabled(false);
+       m.setVisible(true);
+       this.setVisible(false);
+      JOptionPane.showMessageDialog(rootPane,"welcome "+user,"welcome",1);
+
+       }else{
+   JOptionPane.showMessageDialog(rootPane,"تاءكد من ادخال البينات","خطاء البينات",JOptionPane.ERROR_MESSAGE);
+
+       }
+       
+    }
+
+    private void userLogin() {
+        
+    }
+
+    private void guestLogin() {
+
+    }
+    
+    
+    
+    
 }
